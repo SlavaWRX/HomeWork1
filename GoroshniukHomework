@@ -72,10 +72,16 @@ while i <= 10 {
 
 let range = 0...50
 
-//switch number {
-//case 1...18:
-//    print("Low")
-//}
+switch number {
+case 0:
+    print("Zero")
+case 1...18:
+    print("Low")
+case 19...36:
+    print("High")
+default:
+    print("Unknown")
+}
 
 
 /*
@@ -129,9 +135,42 @@ b) `guard let`
 c) switch.
 */
 
-func take(_ element: Any?) -> String {
-    guard let element = element as? String else {
-        return ""
+func printElementType(_ element: Any?) {
+    if let element = element as? String {
+        print("\(element) is String")
+    } else if let element = element as? Int {
+        print("\(element) is Int")
     }
-    return element
+    else if let element = element as? Float {
+        print("\(element) is Float")
+    }
+    else if let element = element as? Double {
+        print("\(element) is Double")
+    }
+    else if let element = element as? Int16 {
+        print("\(element) is Int16")
+    }
+    else {
+        print("Unknown type")
+    }
 }
+
+func printElementType2(_ element: Any?) {
+    guard let element = element else { return }
+    switch element {
+    case is String:
+        print("\(element) is String")
+    case is Int:
+        print("\(element) is Int")
+    case is Float:
+        print("\(element) is Float")
+    case is Bool:
+        print("\(element) is Bool")
+    default:
+        print("Unknown type")
+    }
+}
+
+let any: Any = 1
+printElementType(any)
+printElementType2(any)
